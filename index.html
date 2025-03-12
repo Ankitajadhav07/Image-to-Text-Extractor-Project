@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Text Extraction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #E4F1FF;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .top-frame {
+            background-color: #0F0F0F;
+            height: 100px; 
+        }
+        .container {
+            background-color: #C2D9FF;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            padding: 30px;
+            text-align: center;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .logo img {
+            max-width: 80px;
+        }
+        h1 {
+            color: #190482;
+            font-size: 40px;
+            font-family: Rockwell; 
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #555;
+            font-family: Monaco, sans-serif;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input[type="file"],
+        input[type="text"],
+        input[type="submit"] {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 20px; 
+            transition: border-color 0.3s;
+            transform: skew(-15deg, 0deg);
+            font-family: Monaco, sans-serif;
+        }
+        input[type="file"]:hover,
+        input[type="text"]:hover,
+        input[type="submit"]:hover {
+            border-color: #007BFF;
+            font-family: Monaco, sans-serif;
+        }
+        input[type="submit"] {
+            padding: 12px 24px; 
+            width: 100%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 20px; 
+            transition: border-color 0.3s;
+            background-color: #007BFF;
+            font-family: Monaco, sans-serif;
+}
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            font-family: Monaco, sans-serif;
+        }
+        p {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f7f7f7;
+            font-family: Monaco, sans-serif;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        h4{
+            color: #190482;
+            font-size: 20px;
+            font-family: Georgia, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-frame"></div>
+    <div class="container">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <h1>Image Text Extraction</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*">
+            <input type="submit" value="Extract Text from Uploaded Image">
+        </form>
+        <h2>OR</h2>
+        <form action="/extract_url" method="post">
+            <input type="text" name="image_url" placeholder="Enter Image URL">
+            <input type="submit" value="Extract Text from URL Link">
+        </form>
+        <br>
+        <h2>Extracted Text:</h2>
+        <p>{{ extracted_text }}</p>
+        <form action="/save_as_word" method="post">
+            <input type="hidden" name="extracted_text" value="{{ extracted_text }}">
+            <input type="submit" value="Save as Word Document">
+        </form>
+        <form action="/save_as_pdf" method="post">
+            <input type="hidden" name="extracted_text" value="{{ extracted_text }}">
+            <input type="submit" value="Save as PDF Document">
+        </form>
+        <h2>Uploaded Image:</h2>
+        <img src="{{ url_for('uploaded_image', filename=image_path) }}" alt="Uploaded Image">
+        <br>
+            <h4>Ankita Jadhav CSE(AIDS)</h4>
+
+    </div>
+</body>
+</html>
